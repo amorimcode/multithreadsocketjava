@@ -62,6 +62,8 @@ class ClientHandler extends Thread {
 
                 // receive the answer from client
                 received = dis.readUTF();
+                if (received.equals(null))
+                    throw new Exception("Não pode ser nulo");
 
                 if (received.equals("Exit")) {
                     System.out.println("Client " + this.s + " sends exit...");
@@ -70,10 +72,6 @@ class ClientHandler extends Thread {
                     System.out.println("Connection closed");
                     break;
                 }
-
-                if (received.equals(null))
-                    throw new Exception("Não pode ser nulo");
-
                 // escreve mensagem recebida do cliente
                 System.out.println(received);
 
